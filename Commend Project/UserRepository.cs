@@ -38,16 +38,16 @@ public class UserRepository : IUserRepository
         var users = JsonConvert.DeserializeObject<List<User>>(data);
         return users.FirstOrDefault(x => x.UserName == username);
     }
-    public void Update(string userName, string password, string status)
+    public void Update(User user)
     {
         var data = File.ReadAllText(_path);
         var users = JsonConvert.DeserializeObject<List<User>>(data);
-        var update = users.FirstOrDefault(x => x.UserName == userName);
+        var update = users.FirstOrDefault(x => x.UserName == user.UserName);
 
         if (update != null)
         {
-            update.Password = password;
-            update.Status = status;
+            update.Password = user.Password;
+            update.Status = user.Status;
             var result = JsonConvert.SerializeObject(users);
             File.WriteAllText(_path, result);
         }
@@ -62,6 +62,8 @@ public class UserRepository : IUserRepository
         File.WriteAllText(_path, result);
     }
 
-
-
+    public void Update(User user)
+    {
+        throw new NotImplementedException();
+    }
 }

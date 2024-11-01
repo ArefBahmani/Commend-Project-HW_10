@@ -1,13 +1,16 @@
 ﻿using Colors.Net.StringColorExtensions;
 using Colors.Net;
+using Commend_Project.UserService;
+
 
 UserService _userService = new UserService();
+//_userService.GetUser();
 while (true)
 {
     try
     {
         Console.Clear();
-        Console.Write("Enter Command : ");
+        ColoredConsole.Write("Enter Command : ".DarkYellow());
         string[] commands = Console.ReadLine().Split(' ');
         if (commands.Length == 0)
         {
